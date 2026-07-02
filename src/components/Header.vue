@@ -1,5 +1,5 @@
 <script>
-import router from '@/router';
+import router from '../router';
 
 import { RouterLink } from 'vue-router';
 

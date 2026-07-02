@@ -11,10 +11,6 @@ dotenv.config();
 let app = express();
 const port = process.env.PORT || 3005;
 
-app.listen(port, function () {
-    console.log(`http://localhost:${port}`);
-});
-
 const uploadDir = 'uploads';
 if (!fs.existsSync(uploadDir)) {
     fs.mkdirSync(uploadDir);
@@ -53,6 +49,10 @@ app.use(cors({
 }));
 
 app.use(express.json());
+
+const __dirname = path.resolve();
+
+app.use(express.static(path.join(__dirname, 'dist')));
 
 app.use('/uploads', express.static('uploads'));
 
@@ -355,4 +355,12 @@ app.delete('/events/respond', async function (req, res) {
         console.error('Ошибка:', error);
         res.status(500).json({ message: 'Ошибка сервера' });
     }
+});
+
+app.listen(port, function () {
+    console.log(`http://localhost:${port}`);
+});
+
+app.get(/.*/, (req, res) => {
+    res.sendFile(path.join(__dirname, 'dist', 'index.html'));
 });
