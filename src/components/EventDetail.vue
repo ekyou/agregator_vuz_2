@@ -46,7 +46,7 @@ export default {
 
     methods: {
         async loadEvent(id){
-            let response = await axios.get(`event`, {
+            let response = await axios.get(`/event`, {
                 params:
                 {
                     _id: id
