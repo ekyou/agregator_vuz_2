@@ -45,7 +45,7 @@ export default {
 
     methods: {
         async loadEvent(id){
-            let response = await axios.get('event', {
+            let response = await axios.get(`${import.meta.env.VITE_API_URL}/event`, {
                 params:
                 {
                     _id: id
