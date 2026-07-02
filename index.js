@@ -4,9 +4,12 @@ import mongoose from 'mongoose';
 import multer from 'multer';
 import fs from 'fs';
 import path from 'path';
+import dotenv from 'dotenv';
+
+dotenv.config();
 
 let app = express();
-let port = 3005;
+const port = process.env.PORT || 3005;
 
 app.listen(port, function () {
     console.log(`http://localhost:${port}`);
@@ -45,13 +48,15 @@ const upload = multer({
     fileFilter: fileFilter
 });
 
-app.use(cors({ origin: 'http://localhost:5173' }));
+app.use(cors({
+    origin: process.env.CLIENT_URL
+}));
 
 app.use(express.json());
 
 app.use('/uploads', express.static('uploads'));
 
-mongoose.connect('mongodb://127.0.0.1:27017/practica-app');
+mongoose.connect(process.env.MONGO_URI);
 
 let userSchema = new mongoose.Schema({
     email:{
