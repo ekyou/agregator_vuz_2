@@ -13,6 +13,7 @@ export default {
 
     mounted(){
         const id = this.$route.params.id;
+        console.log('Event ID from route:', id); // Добавьте эту строку для отладки
         this.loadEvent(id);
         this.getUser();
     },
