@@ -88,7 +88,7 @@ export default {
             this.isResponding = true;
 
             try {
-                const response = await axios.post('events/respond', {
+                const response = await axios.post('/events/respond', {
                     eventId: this.event._id,
                     userId: this.user.id
                 });
@@ -109,7 +109,7 @@ export default {
             this.isResponding = true;
 
             try {
-                const response = await axios.delete('events/respond', {
+                const response = await axios.delete('/events/respond', {
                     data: {
                         eventId: this.event._id,
                         userId: this.user.id
